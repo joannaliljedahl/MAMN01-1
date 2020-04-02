@@ -10,21 +10,28 @@
         android:id="@+id/button"
         android:layout_width="140dp"
         android:layout_height="82dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="180dp"
+        android:background="#9A03A9F4"
         android:onClick="compassButton"
         android:text="Compass"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="146dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="131dp"
-        android:layout_height="74dp"
+        android:layout_width="143dp"
+        android:layout_height="84dp"
         android:layout_marginTop="180dp"
+        android:background="#9A03A9F4"
+        android:onClick="accelerometerButton"
         android:text="Accelerator"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button"
-        app:layout_constraintVertical_bias="0.126"
-        tools:layout_editor_absoluteX="155dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

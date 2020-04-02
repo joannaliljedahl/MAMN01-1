@@ -17,4 +17,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Compass.class);
         startActivity(intent);
     }
+
+    public void accelerometerButton(View view){
+        Intent intent = new Intent(this,Accelerometer.class);
+        startActivity(intent);
+    }
 }
