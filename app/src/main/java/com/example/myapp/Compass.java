@@ -1,19 +1,28 @@
 package com.example.myapp;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Compass extends AppCompatActivity implements SensorEventListener {
     ImageView compass_img;
     TextView txt_compass;
+    ConstraintLayout c1;
+
     int mAzimuth;
     private SensorManager mSensorManager;
     private Sensor mRotationV, mAccelerometer, mMagnetometer;
@@ -24,6 +33,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     private float[] mLastMagnetometer = new float[3];
     private boolean mLastAccelerometerSet = false;
     private boolean mLastMagnetometerSet = false;
+    private Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +43,15 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         compass_img = (ImageView) findViewById(R.id.img_compass);
         txt_compass = (TextView) findViewById(R.id.txt_azimuth);
+        c1 = (ConstraintLayout) findViewById(R.id.c1);
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         start();
 
+
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
@@ -82,6 +96,26 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
 
         txt_compass.setText(mAzimuth + "° " + where);
+
+        if (where.equals("N")){
+            c1.setBackgroundColor(Color.parseColor("#96b6ff"));
+            vibrator.vibrate(VibrationEffect.createOneShot(200,VibrationEffect.DEFAULT_AMPLITUDE));
+
+        }
+
+        if (where.equals("S")){
+            c1.setBackgroundColor(Color.parseColor("#e0bdff"));
+        }
+
+        if (where.equals("E")){
+            c1.setBackgroundColor(Color.parseColor("#9ff5c6"));
+        }
+
+        if (where.equals("W")){
+            c1.setBackgroundColor(Color.parseColor("#fbfcb6"));
+        }
+
+
 
 
     }
